@@ -4,11 +4,19 @@
       <li
         v-for="todo in sharedState.todos"
         :key="todo.id"
+        :class="{completed: todo.completed}"
         @mouseenter="mouseenter"
       >
-        <input type="checkbox" :checked="todo.completed" @click="changeChecked(todo.id)">
-        <span>id:{{todo.id}}</span>
-        <span>{{todo.memo}}</span>
+        <input
+          v-bind:id="todo.id"
+          type="checkbox"
+          :checked="todo.completed"
+          @click="changeChecked(todo.id)"
+        >
+        <label v-bind:for="todo.id">
+          <span>id:{{todo.id}}</span>
+          <span>{{todo.memo}}</span>
+        </label>
         <button @click="removeTodo(todo.id)">削除</button>
       </li>
     </ul>
@@ -30,6 +38,11 @@ export default {
       sharedState: store.state
     }
   },
+  computed: {
+    hoge: function () {
+
+    },
+  },
   methods: {
     /**
      * 入力されたメモをオブジェクトに格納して、Storeに格納する
@@ -38,7 +51,6 @@ export default {
     addMemo(memo) {
       console.log(memo);
       const obj = {
-        // 'id': store.state.todos.length + 1,
         'memo': memo,
         'completed': false,
       }
@@ -61,3 +73,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  .completed {
+    label {
+      text-decoration: line-through;
+    }
+  }
+</style>
