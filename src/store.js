@@ -20,6 +20,16 @@ const state = {
   copyMemo: '',
 };
 
+const util = {
+  // memos の中から id が一致するメモを返す
+  findIndex(memos, id) {
+    const targetId = parseInt(id, 10);
+    return memos.findIndex((memo) => {
+      return memo.id === targetId;
+    })
+  }
+};
+
 const actions = {
   /**
    * Todoをオブジェクト形式でtodosに格納する
@@ -38,8 +48,9 @@ const actions = {
   changeChecked(n) {
     state.todos[n - 1].completed = !state.todos[n - 1].completed;
   },
-  removeTodo(n) {
-    state.todos.splice(n - 1, 1);
+  removeTodo(id) {
+    const index = util.findIndex(state.todos, id);
+    state.todos.splice(index, 1);
   },
 };
 
