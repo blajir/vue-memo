@@ -1,6 +1,13 @@
 # vue-memo
 
-> A Vue.js project
+> Vue.jsで作ったTodoアプリケーション
+
+## 概要
+Vue.jsで作ったTodoアプリケーションのサンプルです。
+登録したTodoはローカルストレージに保存されます。
+
+## デモページ
+[https://blajir.github.io/vue-memo/dist/](https://blajir.github.io/vue-memo/dist/#/)
 
 ## Build Setup
 
