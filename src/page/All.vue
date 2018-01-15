@@ -27,7 +27,7 @@
         >削除</button>
       </li>
     </ul>
-    <div v-else>表示するTodoがありません</div>
+    <div v-else><p class="tac">表示するTodoがありません</p></div>
     <footer-component @addMemo="addMemo"/>
   </main>
 </template>
@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .tac {
+    text-align: center;
+  }
   .main {
   }
   .completed {
