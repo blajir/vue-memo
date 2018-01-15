@@ -2,7 +2,7 @@
   <footer class="footer">
     <input
       type="text"
-      placeholder="メモを入れてね"
+      placeholder="Todoを追加"
       v-model="memo"
       class="footer__input"
     >

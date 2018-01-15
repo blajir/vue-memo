@@ -2,17 +2,17 @@ const state = {
   todos: [
     {
       id: 1,
-      memo: 'hoge',
+      memo: 'スーパーに買い物に行く',
       completed: false,
     },
     {
       id: 2,
-      memo: 'foo',
+      memo: '飛行機のチケットを予約する',
       completed: false,
     },
     {
       id: 3,
-      memo: 'bar',
+      memo: '会議室の予約をする',
       completed: false,
     },
   ],
@@ -64,9 +64,26 @@ const actions = {
    * ローカルストレージの値を読み込む
    */
   loadTodo() {
-    // state.todos = JSON.parse(localStorage.getItem('todos'));
     state.todos = JSON.parse(localStorage.getItem('todos'));
-    if(!state.todos) state.todos = [];
+    if(!state.todos) {
+      state.todos = [
+        {
+          id: 1,
+          memo: 'スーパーに買い物に行く',
+          completed: false,
+        },
+        {
+          id: 2,
+          memo: '飛行機のチケットを予約する',
+          completed: false,
+        },
+        {
+          id: 3,
+          memo: '会議室の予約をする',
+          completed: false,
+        },
+      ];
+    }
   },
 };
 
