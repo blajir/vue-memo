@@ -16,8 +16,6 @@ const state = {
       completed: false,
     },
   ],
-  // idCounter: state.todos.length,
-  copyMemo: '',
 };
 
 const util = {
@@ -48,6 +46,10 @@ const actions = {
   changeChecked(n) {
     state.todos[n - 1].completed = !state.todos[n - 1].completed;
   },
+  /**
+   * Todoを削除する
+   * @param {*} id
+   */
   removeTodo(id) {
     const index = util.findIndex(state.todos, id);
     state.todos.splice(index, 1);
