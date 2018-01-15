@@ -38,10 +38,8 @@ export default {
       sharedState: store.state
     }
   },
-  computed: {
-    hoge: function () {
-
-    },
+  created: function () {
+    store.actions.loadTodo();
   },
   methods: {
     /**
@@ -55,6 +53,7 @@ export default {
         'completed': false,
       }
       store.actions.addMemo(obj);
+      store.actions.saveTodo();
     },
     /**
      * クリックされた要素のIDを引数としてStore.actionに渡し、
@@ -69,6 +68,7 @@ export default {
     },
     removeTodo(id) {
       store.actions.removeTodo(id);
+      store.actions.saveTodo();
     },
   },
 }

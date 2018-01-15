@@ -52,6 +52,20 @@ const actions = {
     const index = util.findIndex(state.todos, id);
     state.todos.splice(index, 1);
   },
+  /**
+   * ローカルストレージにTodoを保存する
+   */
+  saveTodo() {
+    localStorage.setItem('todos', JSON.stringify(state.todos));
+  },
+  /**
+   * ローカルストレージの値を読み込む
+   */
+  loadTodo() {
+    // state.todos = JSON.parse(localStorage.getItem('todos'));
+    state.todos = JSON.parse(localStorage.getItem('todos'));
+    if(!state.todos) state.todos = [];
+  },
 };
 
 export default {
