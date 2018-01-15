@@ -1,11 +1,15 @@
 <template>
-  <main>
-    <ul v-if="sharedState.todos.length !== 0">
+  <main class="main">
+    <ul
+      v-if="sharedState.todos.length !== 0"
+      class="todo-list"
+    >
       <li
         v-for="todo in sharedState.todos"
         :key="todo.id"
         :class="{completed: todo.completed}"
         @mouseenter="mouseenter"
+        class="todo-list-item"
       >
         <input
           v-bind:id="todo.id"
@@ -17,7 +21,10 @@
           <span>id:{{todo.id}}</span>
           <span>{{todo.memo}}</span>
         </label>
-        <button @click="removeTodo(todo.id)">削除</button>
+        <button
+          @click="removeTodo(todo.id)"
+          class="todo-list-item__button"
+        >削除</button>
       </li>
     </ul>
     <div v-else>表示するTodoがありません</div>
@@ -75,9 +82,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .main {
+  }
   .completed {
     label {
       text-decoration: line-through;
+      color: #d8d8da;
+    }
+  }
+  .todo-list {
+    width: 50%;
+    margin: 0 auto;
+    border-top: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, .016);
+    &-item {
+      position: relative;
+      padding: 20px;
+      background-color: #fff;
+      border-bottom: 1px solid #e6e6e6;
+      font-size: 16px;
+      &__button {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        height: 22px;
+        margin-top: -11px;
+        border: 1px solid #e6e6e6;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, .06);
+      }
     }
   }
 </style>
