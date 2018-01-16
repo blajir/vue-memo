@@ -28,12 +28,12 @@ const util = {
   }
 };
 
-const actions = {
+const mutations = {
   /**
    * Todoをオブジェクト形式でtodosに格納する
    * @param {Object} obj IDとmemoが含まれたオブジェクト
    */
-  addMemo(obj) {
+  addMemo(state, obj) {
     obj.id = state.todos.reduce((id, todo) => {
       return id < todo.id ? todo.id : id;
     }, 0) + 1;
@@ -43,27 +43,27 @@ const actions = {
    * Todoが完了したかどうかを判定するcompletedのブーリン値をトグルさせる
    * @param {Number} n
    */
-  changeChecked(n) {
+  changeChecked(state, n) {
     state.todos[n - 1].completed = !state.todos[n - 1].completed;
   },
   /**
    * Todoを削除する
    * @param {*} id
    */
-  removeTodo(id) {
+  removeTodo(state, id) {
     const index = util.findIndex(state.todos, id);
     state.todos.splice(index, 1);
   },
   /**
    * ローカルストレージにTodoを保存する
    */
-  saveTodo() {
+  saveTodo(state) {
     localStorage.setItem('todos', JSON.stringify(state.todos));
   },
   /**
    * ローカルストレージの値を読み込む
    */
-  loadTodo() {
+  loadTodo(state) {
     state.todos = JSON.parse(localStorage.getItem('todos'));
     if(!state.todos) {
       state.todos = [
@@ -89,5 +89,5 @@ const actions = {
 
 export default {
   state,
-  actions,
+  mutations,
 }
