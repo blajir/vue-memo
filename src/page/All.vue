@@ -33,20 +33,20 @@
 </template>
 
 <script>
-import store from "../store";
+// import store from "../store";
 import FooterComponent from "../components/Footer";
 
 export default {
   components: {
     FooterComponent,
   },
-  data() {
-    return {
-      sharedState: store.state
-    }
-  },
   created: function () {
-    store.actions.loadTodo();
+    this.$store.commit('loadTodo');
+  },
+  computed: {
+    sharedState() {
+      return this.$store.state;
+    },
   },
   methods: {
     /**
@@ -59,8 +59,8 @@ export default {
         'memo': memo,
         'completed': false,
       }
-      store.actions.addMemo(obj);
-      store.actions.saveTodo();
+      this.$store.commit('addMemo', obj);
+      this.$store.commit('saveTodo');
     },
     /**
      * クリックされた要素のIDを引数としてStore.actionに渡し、
@@ -68,14 +68,14 @@ export default {
      * @param {Number} id
      */
     changeChecked(id) {
-      store.actions.changeChecked(id);
+      this.$store.commit('changeChecked', id);
     },
     mouseenter(e) {
       // console.log(e.target);
     },
     removeTodo(id) {
-      store.actions.removeTodo(id);
-      store.actions.saveTodo();
+      this.$store.commit('removeTodo', id);
+      this.$store.commit('saveTodo');
     },
   },
 }
@@ -84,8 +84,6 @@ export default {
 <style lang="scss" scoped>
   .tac {
     text-align: center;
-  }
-  .main {
   }
   .completed {
     label {
