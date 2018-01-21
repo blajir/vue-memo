@@ -4,16 +4,19 @@ const state = {
       id: 1,
       memo: 'スーパーに買い物に行く',
       completed: false,
+      isButtonShow: false,
     },
     {
       id: 2,
       memo: '飛行機のチケットを予約する',
       completed: false,
+      isButtonShow: false,
     },
     {
       id: 3,
       memo: '会議室の予約をする',
       completed: false,
+      isButtonShow: false,
     },
   ],
 };
@@ -43,16 +46,33 @@ const mutations = {
    * Todoが完了したかどうかを判定するcompletedのブーリン値をトグルさせる
    * @param {Number} n
    */
-  changeChecked(state, n) {
-    state.todos[n - 1].completed = !state.todos[n - 1].completed;
+  changeChecked(state, id) {
+    const index = util.findIndex(state.todos, id);
+    state.todos[index].completed = !state.todos[index].completed;
   },
   /**
    * Todoを削除する
-   * @param {*} id
+   * @param {Number} id
    */
   removeTodo(state, id) {
     const index = util.findIndex(state.todos, id);
     state.todos.splice(index, 1);
+  },
+  /**
+   * 削除ボタンを表示
+   * @param {Number} index
+   */
+  showButton(state, id) {
+    const index = util.findIndex(state.todos, id);
+    state.todos[index].isButtonShow = !state.todos[index].isButtonShow;
+  },
+  /**
+   * 削除ボタンを非表示
+   * @param {Number} index
+   */
+  hideButton(state, id) {
+    const index = util.findIndex(state.todos, id);
+    state.todos[index].isButtonShow = !state.todos[index].isButtonShow;
   },
   /**
    * ローカルストレージにTodoを保存する
@@ -71,16 +91,19 @@ const mutations = {
           id: 1,
           memo: 'スーパーに買い物に行く',
           completed: false,
+          isButtonShow: false,
         },
         {
           id: 2,
           memo: '飛行機のチケットを予約する',
           completed: false,
+          isButtonShow: false,
         },
         {
           id: 3,
           memo: '会議室の予約をする',
           completed: false,
+          isButtonShow: false,
         },
       ];
     }

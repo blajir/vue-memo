@@ -25,6 +25,7 @@ export default {
       const obj = {
         'memo': memo,
         'completed': false,
+        'isButtonShow': false,
       }
       this.$store.commit('addMemo', obj);
       this.$store.commit('saveTodo');

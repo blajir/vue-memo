@@ -8,7 +8,8 @@
         v-for="todo in sharedState.todos"
         :key="todo.id"
         :class="{completed: todo.completed}"
-        @mouseenter="mouseenter"
+        @mouseenter="showButton(todo.id)"
+        @mouseleave="hideButton(todo.id)"
         class="todo-list-item"
       >
         <input
@@ -22,6 +23,7 @@
           <span>{{todo.memo}}</span>
         </label>
         <button
+          v-show="todo.isButtonShow"
           @click="removeTodo(todo.id)"
           class="todo-list-item__button"
         >削除</button>
@@ -50,8 +52,19 @@ export default {
     changeChecked(id) {
       this.$store.commit('changeChecked', id);
     },
-    mouseenter(e) {
-      console.log(e.target);
+    /**
+     * 削除ボタンを表示
+     * @param {Number} id
+     */
+    showButton(id) {
+      this.$store.commit('showButton', id);
+    },
+    /**
+     * 削除ボタンを非表示
+     * @param {Number} id
+     */
+    hideButton(id) {
+      this.$store.commit('hideButton', id);
     },
     removeTodo(id) {
       this.$store.commit('removeTodo', id);
