@@ -2,17 +2,34 @@
   <div id="app">
     <header-component/>
     <router-view/>
+    <footer-component @addMemo="addMemo"/>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/Header";
+import FooterComponent from "./components/Footer";
 
 export default {
   components: {
     HeaderComponent,
+    FooterComponent,
   },
   name: 'app',
+  methods: {
+    /**
+     * 入力されたメモをオブジェクトに格納して、Storeに格納する
+     * @param {String} memo
+     */
+    addMemo(memo) {
+      const obj = {
+        'memo': memo,
+        'completed': false,
+      }
+      this.$store.commit('addMemo', obj);
+      this.$store.commit('saveTodo');
+    },
+  },
 }
 </script>
 

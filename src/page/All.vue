@@ -28,18 +28,11 @@
       </li>
     </ul>
     <div v-else><p class="tac">表示するTodoがありません</p></div>
-    <footer-component @addMemo="addMemo"/>
   </main>
 </template>
 
 <script>
-// import store from "../store";
-import FooterComponent from "../components/Footer";
-
 export default {
-  components: {
-    FooterComponent,
-  },
   created: function () {
     this.$store.commit('loadTodo');
   },
@@ -50,19 +43,6 @@ export default {
   },
   methods: {
     /**
-     * 入力されたメモをオブジェクトに格納して、Storeに格納する
-     * @param {String} memo
-     */
-    addMemo(memo) {
-      console.log(memo);
-      const obj = {
-        'memo': memo,
-        'completed': false,
-      }
-      this.$store.commit('addMemo', obj);
-      this.$store.commit('saveTodo');
-    },
-    /**
      * クリックされた要素のIDを引数としてStore.actionに渡し、
      * Todoのcompletedのブーリン値を変更する
      * @param {Number} id
@@ -71,7 +51,7 @@ export default {
       this.$store.commit('changeChecked', id);
     },
     mouseenter(e) {
-      // console.log(e.target);
+      console.log(e.target);
     },
     removeTodo(id) {
       this.$store.commit('removeTodo', id);
