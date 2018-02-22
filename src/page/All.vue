@@ -92,7 +92,8 @@ export default {
     }
   }
   .todo-list {
-    width: 50%;
+    width: 80%;
+    max-width: 960px;
     margin: 0 auto;
     border-top: 1px solid #e6e6e6;
     border-right: 1px solid #e6e6e6;
